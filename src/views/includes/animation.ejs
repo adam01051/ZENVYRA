@@ -1,0 +1,21 @@
+
+<div class="auth-panel">
+  <div class="panel-inner">
+
+  
+    <div class="tile-grid">
+      <% const tileTypes = ['lit pulse', 'dim', 'mid pulse2', 'dim', 'acc pulse3', 'dim', 'mid pulse', 'dim', 'lit pulse2'] %>
+      <% tileTypes.forEach(function(type) { %>
+        <div class="tile <%= type.split(' ').map(t => 'tile-' + t).join(' ') %>"></div>
+      <% }) %>
+    </div>
+
+    <div class="panel-text">
+      <h2>Manage your store with ease</h2>
+      <p>Track order, manage your inventory and grow your business from one place</p>
+    </div>
+
+  
+
+  </div>
+</div>
