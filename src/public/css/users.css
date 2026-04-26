@@ -1,43 +1,110 @@
+/* ============================================================
+   users.css  —  Matched to login page palette
+   Font: Inter | Colors: #2C2C2A, #f6f5f5, #dddddd, #ffffff
+   Drop-in replacement — no HTML changes needed.
+   ============================================================ */
+
+/* ── Base ───────────────────────────────────────────────── */
+
+
+
+
 .users-container {
   position: relative;
   width: auto;
   height: auto;
   min-width: 100%;
-  min-height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(-45deg, #110303bf, #e37813, #011c1aba, #968383);
+  background: #f6f5f5;
+  font-family: "Inter", sans-serif;
+  color: #1f1f1e;
 }
 
 .users-container a {
   text-decoration: none;
-  color: #000000;
-}
-
-.users-container .nav-item a {
-  color: #e3c08d;
-}
-
-.users-container .nav-item a.disabled {
-  color: #898071;
+  color: #1f1f1e;
 }
 
 .users-container .navigation-menu {
-  position: absolute;
-  z-index: 10000;
-  top: 1%;
-  color: #efefee;
-  font-size: 40px;
-  font-family: monospace;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;  /* logo left, links right */
+  padding: 0 28px;
 }
+
+.users-container .nav-logo {
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.08em;
+  color: #1f1f1e;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.users-container .nav-logo:hover {
+  opacity: 0.7;
+}
+
+.users-container .nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+}
+/* ── Navigation ─────────────────────────────────────────── */
+
+.users-container .nav-item a {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #494747;
+  transition: color 0.15s;
+}
+
+.users-container .nav-item a:hover,
+.users-container .nav-item a.active {
+  color: #1f1f1e;
+  font-weight: 500;
+}
+
+.users-container .nav-item a.disabled {
+  color: #b0aeae;
+  pointer-events: none;
+}
+
+.users-container .navigation-menu {
+  position: fixed;
+  z-index: 10000;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border-bottom: 1px solid #dddddd;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+}
+
+.users-container .navigation-menu ul {
+  margin: 0;
+  padding: 0 28px;
+}
+
+/* ── Layout ─────────────────────────────────────────────── */
 
 .users-container .users-frame {
   position: relative;
   padding-bottom: 80px;
   width: 100%;
   height: auto;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,13 +112,15 @@
 
 .users-container .users-frame .board {
   position: relative;
-  margin-top: 100px;
-  width: 1320px;
+  margin-top: 80px;
+  width: min(1320px, 96%);
   height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
+/* ── Table Sections ─────────────────────────────────────── */
 
 .users-container .board .dishes-table {
   position: relative;
@@ -73,38 +142,106 @@
   align-items: center;
 }
 
+/* ── Section Title ──────────────────────────────────────── */
+
 .users-container .header-name {
-  font-family: "Source Serif Pro";
-  font-style: normal;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 34px;
+  letter-spacing: -0.3px;
+  color: #1f1f1e;
+}
+
+/* ── Table ──────────────────────────────────────────────── */
+
+.users-container .table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  margin-bottom: 0;
+}
+
+.users-container table td,
+.users-container table th {
+  text-align: center;
+  vertical-align: middle;
+  padding: 14px 18px;
+}
+
+.users-container .table thead tr {
+  background: #f6f5f5;
+}
+
+.users-container .table thead th {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  color: #494747;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #dddddd;
+}
+
+.users-container .table tbody tr {
+  transition: background 0.12s;
+}
+
+.users-container .table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.users-container .table tbody tr:hover {
+  background: #fafafa;
+}
+
+.users-container .table tbody td {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
   font-weight: 400;
-  font-size: 30px;
-  line-height: 25px;
-  color: #ffffff;
+  color: #1f1f1e;
+  border: none;
+  border-bottom: 1px solid #dddddd;
+}
+
+/* Remove Bootstrap border conflicts */
+.users-container .table-bordered {
+  border: none !important;
+}
+
+.users-container .table-bordered td,
+.users-container .table-bordered th {
+  border: none !important;
+  border-bottom: 1px solid #dddddd !important;
+}
+
+/* ── Status Select ──────────────────────────────────────── */
+
+.users-container .spec-select {
+  position: relative;
+  padding: 4px 10px;
+  height: 30px;
+  background: #f6f5f5;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+  font-size: 12.5px;
+  font-weight: 400;
+  color: #494747;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.users-container .spec-select:focus {
+  border-color: #2C2C2A;
 }
 
 .users-container select:focus {
   min-width: 90%;
   width: auto;
-}
-
-.users-container .spec-select {
-  position: relative;
-  padding: 0px 7px;
-  /*width: 100%;*/
-  height: 27px;
-  background: #ffffff;
-  border: 1px solid #dddddd;
-  border-radius: 8px;
-  font-family: "GT Walsheim Pro";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 26px;
-  color: #4f547b;
-}
-
-.users-container table td,
-table th {
-  text-align: center;
-  vertical-align: middle;
 }

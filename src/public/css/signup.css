@@ -1,8 +1,29 @@
+/* ============================================================
+   signup.css  —  Updated to match navbar palette
+   Background: #ebe9e4 | Frosted card | Accent: #2C2C2A | Font: Inter
+   ============================================================ */
+
 body {
   font-family: "Inter", sans-serif;
   color: #1f1f1e;
+  margin: 0;
+  padding: 0;
   align-items: center;
 }
+
+/* ── Layout ─────────────────────────────────────────────── */
+
+.main-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.container-items1 { width: 60%; }
+.container-items2 { width: 40%; }
+
+/* ── Page Wrapper ───────────────────────────────────────── */
 
 .signup-container {
   position: relative;
@@ -11,13 +32,25 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-size: 200% 200%;
+  justify-content: center;
+
+  /* Matches navbar / login page background */
+  background: #ebe9e4;
+
+  animation: loginFade 0.8s ease forwards;
 }
 
 .signup-container a {
   text-decoration: none;
-  color: black;
+  color: #1f1f1e;
+  transition: opacity 0.2s ease;
 }
+
+.signup-container a:hover {
+  opacity: 0.7;
+}
+
+/* ── Card ───────────────────────────────────────────────── */
 
 .signup-container .signup-frame {
   position: relative;
@@ -26,24 +59,30 @@ body {
   display: flex;
   flex-direction: column;
   border-radius: 10px;
-  background: #ffffff;
-  padding: 20px;
 
-  
+  /* Frosted — matches login card */
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(127, 119, 221, 0.12);
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.07);
 
+  padding: 28px;
 }
 
-/* ===== TOP TITLE (like login span) ===== */
+/* ── Title ──────────────────────────────────────────────── */
+
 .signup-container .signup-top {
   font-style: normal;
   font-weight: 500;
-  margin-bottom: 8px;
   font-size: 24px;
   line-height: 34px;
   letter-spacing: -0.3px;
+  color: #1f1f1e;
+  margin-bottom: 8px;
 }
 
-/* ===== INPUT ROW ===== */
+/* ── Input Row ──────────────────────────────────────────── */
+
 .signup-container .signup-frame .sign-input-frame {
   position: relative;
   width: 100%;
@@ -51,7 +90,7 @@ body {
   display: flex;
   flex-direction: row;
   margin-bottom: 10px;
-
+  gap: 10px;
 }
 
 .signup-container .sign-input-frame .sign-up-frame {
@@ -59,39 +98,55 @@ body {
   width: 49%;
   display: flex;
   flex-direction: column;
-  
-
-
 }
 
+/* ── Labels ─────────────────────────────────────────────── */
 
-/* ===== LABEL (same as login) ===== */
 .signup-container .sign-up-frame label {
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 18px;
+  color: #1f1f1e;
 }
 
-/* ===== INPUT ===== */
+/* ── Inputs ─────────────────────────────────────────────── */
+
 .signup-container .sign-up-frame input {
   font-family: "Inter", sans-serif;
   position: relative;
-  
   padding-left: 20px;
   width: 100%;
   height: 55px;
-  background: #f6f5f5;
-  border: 1px solid #dddddd;
+
+  /* Warm input — matches login + products */
+  background: #f0ede8;
+  border: 1px solid #d8d5ce;
   border-radius: 8px;
+
+  font-size: 15px;
+  color: #1f1f1e;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
-/* ===== MEDIA ===== */
+.signup-container .sign-up-frame input:focus {
+  border-color: #2C2C2A;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(44, 44, 42, 0.08);
+}
+
+.signup-container .sign-up-frame input::placeholder {
+  color: #b4b2a9;
+}
+
+/* ── Media / Image Upload ───────────────────────────────── */
+
 .signup-container .media-frame {
   position: relative;
-  margin-top: 15px;
+  margin-top: 10px;
   width: 100%;
-  height: 250px;
+  height: 230px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -103,6 +158,15 @@ body {
   height: 93%;
   display: flex;
   border-radius: 15px;
+  overflow: hidden;
+  border: 1.5px dashed #d8d5ce;
+  background: #f0ede8;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.signup-container .media-frame .upload-img-frame:hover {
+  border-color: #2C2C2A;
+  background: #ffffff;
 }
 
 .signup-container .upload-img-frame .delete-img {
@@ -115,8 +179,14 @@ body {
   justify-content: center;
   align-items: center;
   background: #ffffff;
-  box-shadow: 0px 6px 15px rgba(64, 79, 104, 0.05);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.08);
   border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.signup-container .upload-img-frame .delete-img:hover {
+  opacity: 0.7;
 }
 
 .signup-container .media-frame .upload-container {
@@ -128,27 +198,37 @@ body {
   flex-direction: column;
 }
 
-.quest-label{
+.quest-label {
   display: flex;
   width: 100%;
   justify-content: center;
   align-items: center;
   margin-top: 5px;
-
-  
 }
 
-/* ===== FIXED FONT (removed Walsheim) ===== */
+/* ── Media Text ─────────────────────────────────────────── */
+
 .signup-container .media-text {
   font-family: "Inter", sans-serif;
-  font-style: normal;
   font-weight: 500;
   font-size: 15px;
   line-height: 18px;
   color: #1f1f1e;
 }
 
-/* ===== FILE INPUT ===== */
+/* ── Description ────────────────────────────────────────── */
+
+.signup-container .thumbnail-desc {
+  margin-top: 25px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 26px;
+  color: #5f5c55;
+}
+
+/* ── File Input ─────────────────────────────────────────── */
+
 .signup-container .file-box input[type="file"] {
   position: absolute;
   width: 1px;
@@ -161,83 +241,90 @@ body {
 }
 
 .signup-container .file-box label {
-  margin-bottom: 0px;
+  margin-bottom: 0;
   width: 138px;
   height: 40px;
-
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #6a7a99;
-  border-radius: 0px 8px 8px 0px;
+
+  /* Matched to #2C2C2A system */
+  background: #2C2C2A;
+  border-radius: 0 8px 8px 0;
 
   font-family: "Inter", sans-serif;
-  font-style: normal;
   font-weight: 400;
   font-size: 15px;
   line-height: 26px;
   color: #ffffff;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
 }
 
-
-.signup-container .signup-frame .signup-btn {
-	position: relative;
-
-	width: 100%;
-	height: 40px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
- background: #2C2C2A; 
-	border-radius: 10px;
-
-	font-style: normal;
-	font-weight: 700;
-	font-size: 20px;
-
-	letter-spacing: -0.02em;
-	color: #ffffff;
-
-  
+.signup-container .file-box label:hover {
+  opacity: 0.82;
 }
 
 .signup-container .file-box .upload-name {
   font-family: "Inter", sans-serif;
   position: relative;
-  padding: 20px;
+  padding: 0 20px;
   width: 85%;
   height: 40px;
   display: flex;
-  background: #ffffff;
-  border: 1px solid #dddddd;
-  border-radius: 8px 0px 0px 8px;
+  align-items: center;
+  background: #f0ede8;
+  border: 1px solid #d8d5ce;
+  border-radius: 8px 0 0 8px;
+  font-size: 14px;
+  color: #5f5c55;
 }
 
-/* ===== DESCRIPTION (match login text style) ===== */
-.signup-container .thumbnail-desc {
-  margin-top: 25px;
+/* ── Signup Button — matches login-btn exactly ──────────── */
 
-  font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 26px;
-  color: #4f547b;
-}
-
-/* ===== ANIMATION (unchanged) ===== */
-@keyframes gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* ===== LAYOUT ===== */
-.main-container {
+.signup-container .signup-frame .signup-btn {
+  position: relative;
+  margin-top: 10px;
   width: 100%;
-  height: 100vh;
+  height: 56px;
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  background: #2C2C2A;
+  border-radius: 10px;
+  border: none;
+
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+
+  transition: opacity 0.2s ease, transform 0.15s ease;
 }
 
-.container-items1 { width: 60%; }
-.container-items2 { width: 40%; }
+.signup-container .signup-frame .signup-btn:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.signup-container .signup-frame .signup-btn:active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* ── Shared fade-in animation ───────────────────────────── */
+
+@keyframes loginFade {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
