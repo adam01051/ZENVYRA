@@ -1,3 +1,9 @@
+body {
+  font-family: "Inter", sans-serif;
+  color: #1f1f1e;
+  align-items: center;
+}
+
 .signup-container {
   position: relative;
   width: 100%;
@@ -5,8 +11,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-
   background-size: 200% 200%;
 }
 
@@ -14,8 +18,6 @@
   text-decoration: none;
   color: black;
 }
-
-
 
 .signup-container .signup-frame {
   position: relative;
@@ -25,39 +27,57 @@
   flex-direction: column;
   border-radius: 10px;
   background: #ffffff;
-  padding: 25px;
+  padding: 20px;
+
+  
+
 }
 
+/* ===== TOP TITLE (like login span) ===== */
+.signup-container .signup-top {
+  font-style: normal;
+  font-weight: 500;
+  margin-bottom: 8px;
+  font-size: 24px;
+  line-height: 34px;
+  letter-spacing: -0.3px;
+}
+
+/* ===== INPUT ROW ===== */
 .signup-container .signup-frame .sign-input-frame {
   position: relative;
   width: 100%;
   height: 70px;
   display: flex;
   flex-direction: row;
-}
+  margin-bottom: 10px;
 
+}
 
 .signup-container .sign-input-frame .sign-up-frame {
   position: relative;
- 
   width: 49%;
-  height: auto;
   display: flex;
   flex-direction: column;
+  
+
+
 }
 
+
+/* ===== LABEL (same as login) ===== */
 .signup-container .sign-up-frame label {
-
-
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 18px;
 }
 
+/* ===== INPUT ===== */
 .signup-container .sign-up-frame input {
+  font-family: "Inter", sans-serif;
   position: relative;
-  margin-top: 10px;
+  
   padding-left: 20px;
   width: 100%;
   height: 55px;
@@ -66,6 +86,7 @@
   border-radius: 8px;
 }
 
+/* ===== MEDIA ===== */
 .signup-container .media-frame {
   position: relative;
   margin-top: 15px;
@@ -107,15 +128,27 @@
   flex-direction: column;
 }
 
-.signup-container .media-text {
-  font-family: "GT Walsheim Pro";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 18px;
-  color: #140342;
+.quest-label{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+
+  
 }
 
+/* ===== FIXED FONT (removed Walsheim) ===== */
+.signup-container .media-text {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+  color: #1f1f1e;
+}
+
+/* ===== FILE INPUT ===== */
 .signup-container .file-box input[type="file"] {
   position: absolute;
   width: 1px;
@@ -137,7 +170,8 @@
   align-items: center;
   background: #6a7a99;
   border-radius: 0px 8px 8px 0px;
-  font-family: "GT Walsheim Pro";
+
+  font-family: "Inter", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
@@ -145,7 +179,30 @@
   color: #ffffff;
 }
 
+
+.signup-container .signup-frame .signup-btn {
+	position: relative;
+
+	width: 100%;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+ background: #2C2C2A; 
+	border-radius: 10px;
+
+	font-style: normal;
+	font-weight: 700;
+	font-size: 20px;
+
+	letter-spacing: -0.02em;
+	color: #ffffff;
+
+  
+}
+
 .signup-container .file-box .upload-name {
+  font-family: "Inter", sans-serif;
   position: relative;
   padding: 20px;
   width: 85%;
@@ -156,6 +213,7 @@
   border-radius: 8px 0px 0px 8px;
 }
 
+/* ===== DESCRIPTION (match login text style) ===== */
 .signup-container .thumbnail-desc {
   margin-top: 25px;
 
@@ -166,52 +224,20 @@
   color: #4f547b;
 }
 
-/* Background animation */
-@-webkit-keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
+/* ===== ANIMATION (unchanged) ===== */
 @keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-
+/* ===== LAYOUT ===== */
 .main-container {
-	width: 100%;
-	height: 100vh;
-
-	display: flex;
-	flex-direction: row;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
 }
 
-.container-items1 {
-	width: 60%;
-}
-.container-items2 {
-	width: 40%;
-}
-
- .signup-container .signup-top  {
-	margin-top: 15px;
-
-	font-style: normal;
-	font-weight: 400;
-	font-size: 15px;
-	line-height: 26px;
-}
+.container-items1 { width: 60%; }
+.container-items2 { width: 40%; }
