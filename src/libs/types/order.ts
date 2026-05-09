@@ -7,6 +7,7 @@ export interface OrderItem {
 	_id: ObjectId;
 	itemQuantity: number;
 	itemPrice: number;
+	selectedSize: ProductSize;
 	productId: ObjectId;
 	orderId: ObjectId;
 	createdAt: Date;
@@ -19,6 +20,7 @@ export interface OrderItem {
 export interface OrderItemInput {
 	itemQuantity: number;
 	itemPrice: number;
+	selectedSize: ProductSize;
 	productId: ObjectId;
 	orderId?: ObjectId;
 }

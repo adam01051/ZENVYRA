@@ -1,6 +1,7 @@
 import { T } from "../libs/types/common";
+// @ts-ignore
 import { Response, Request, NextFunction } from "express";
-import MemberService from "../models/Member.service";
+import MemberService from "../models/member.service";
 import {
 	MemberInput,
 	LoginInput,
@@ -11,7 +12,6 @@ import {
 import Errors, { HttpCode, Message } from "../libs/Errors";
 import AuthService from "../models/Auth.service";
 import { AUTH_TIMER } from "../libs/config";
-import { verify } from "../../node_modules/@types/jsonwebtoken/index.d";
 
 
 
@@ -21,23 +21,21 @@ const memberController: T = {};
 const authSevice = new AuthService();
 
 
-memberController.getRestaurant = async (req: Request, res: Response) => {
-	
-try {
-	console.log("getRestaurant");
-	const result = await memberService.getRestaurant();
- 
-	res.status(HttpCode.OK).json(result);
-} catch (err) {
-	console.log("Error in getRestaurant, jarayoni", err);
-	if (err instanceof Errors) {
-		res.status(err.code).json(err);
-	} else {
-		res.status(Errors.standard.code).json(Errors.standard);
-	}
-}
+memberController.getStore = async (req: Request, res: Response) => {
+	try {
+		console.log("getStore");
+		const result = await memberService.getStore();
 
-}
+		res.status(HttpCode.OK).json(result);
+	} catch (err) {
+		console.log("Error in getStore, jarayoni", err);
+		if (err instanceof Errors) {
+			res.status(err.code).json(err);
+		} else {
+			res.status(Errors.standard.code).json(Errors.standard);
+		}
+	}
+};
 
 
 
@@ -152,7 +150,7 @@ memberController.getTopUsers = async (req: Request, res: Response) => {
 		res.status(HttpCode.OK).json(result);
 
 	} catch (err) {
-		console.log("Error getTopUsers, jarayoni", err);
+		console.log("Error in getTopUsers, process", err);
 		if (err instanceof Errors) {
 			res.status(err.code).json(err);
 		} else {

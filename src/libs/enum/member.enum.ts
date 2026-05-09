@@ -1,8 +1,8 @@
 
 
 export enum MemberType {
-    USER = "USER",
-    RESTAURANT = "RESTAURANT",
+	USER = "USER",
+	STORE = "STORE",
 }
 
 

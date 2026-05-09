@@ -1,25 +1,23 @@
 export enum ProductSize {
-	SMALL = "SMALL",
-	NORMAL = "NORMAL",
-	LARGE = "LARGE",
-	SET = "SET",
+	S = "S",
+	M = "M",
+	L = "L",
+	XL = "XL",
+	XXL = "XXL",
 }
-export enum ProductVolume {
-	HALF = 0.5,
-	ONE = 1,
-	ONE_POINT_TWO = 1.2,
-	ONE_POINT_FIVE = 1.5,
-	TWO = 2,
-}
+
 export enum ProductStatus {
 	PAUSE = "PAUSE",
 	PROCESS = "PROCESS",
 	DELETE = "DELETE",
 }
+
 export enum ProductCollection {
-	DISH = "DISH",
-	SALAD = "'SALAD",
-	DESSERT = "DESERT",
-	DRINK = "DRINK",
+	TSHIRT = "TSHIRT",
+	HOODIE = "HOODIE",
+	JEANS = "JEANS",
+	JACKET = "JACKET",
+	SHOES = "SHOES",
+	ACCESSORY = "ACCESSORY",
 	OTHER = "OTHER",
 }

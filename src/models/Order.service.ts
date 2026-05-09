@@ -12,7 +12,7 @@ import Errors, { Message } from "../libs/Errors";
 import { HttpCode } from "../libs/Errors";
 import { ObjectId } from "mongoose";
 import { OrderStatus } from "../libs/enum/order.enum";
-import MemberService from "./Member.service";
+import MemberService from "./member.service";
 
 class OrderService {
 	private readonly orderModel;

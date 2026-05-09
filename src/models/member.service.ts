@@ -17,15 +17,13 @@ class MemberService {
 		this.memberModel = MemberModel;
 	}
 	//spa
-	public async getRestaurant(): Promise<Member> {
+	public async getStore(): Promise<Member> {
 		const result = await this.memberModel
-			.findOne({ memberType: MemberType.RESTAURANT })
+			.findOne({ memberType: MemberType.STORE })
 			.lean()
 			.exec();
 
-		result.target = "hell";
 		if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
-
 		return result;
 	}
 
@@ -75,7 +73,7 @@ class MemberService {
 	//ssr
 	public async processSignup(input: MemberInput): Promise<Member> {
 		const exist = await this.memberModel
-			.findOne({ memberType: MemberType.RESTAURANT })
+			.findOne({ memberType: MemberType.STORE })
 			.exec();
 
 		if (exist) {

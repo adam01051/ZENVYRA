@@ -3,9 +3,26 @@ import {
 	ProductCollection,
 	ProductSize,
 	ProductStatus,
-	ProductVolume,
 } from "../libs/enum/product.enum";
 
+/* Size Variant Schema */
+const variantSchema = new Schema(
+	{
+		size: {
+			type: String,
+			enum: ProductSize,
+			required: true,
+		},
+		stock: {
+			type: Number,
+			required: true,
+			default: 0,
+		},
+	},
+	{ _id: false },
+);
+
+/* Product Schema */
 const productSchema = new Schema(
 	{
 		productStatus: {
@@ -23,53 +40,50 @@ const productSchema = new Schema(
 		productName: {
 			type: String,
 			required: true,
+			trim: true,
 		},
 
 		productPrice: {
 			type: Number,
 			required: true,
+			min: 0,
 		},
 
-		productLeftCount: {
-			type: Number,
-			required: true,
+		/* NEW INVENTORY SYSTEM */
+		variants: {
+			type: [variantSchema],
+			default: [],
 		},
-		productSize: {
-			type: String,
-			enum: ProductSize,
-			default: ProductSize.NORMAL,
-		},
-		productVolume: {
-			type: Number,
-			enum: ProductVolume,
-			default: ProductVolume.ONE,
-		},
+
 		productDesc: {
 			type: String,
+			default: "",
 		},
+
 		productImages: {
 			type: [String],
 			default: [],
 		},
+
 		productViews: {
 			type: Number,
 			default: 0,
 		},
 	},
 	{
-		timestamps: true, // createdAt, updatedAt
+		timestamps: true,
 	},
 );
 
+/* Unique Product Name + Category */
 productSchema.index(
 	{
 		productName: 1,
-		ProductSize: 1,
-		ProductVolume: 1,
+		productCollection: 1,
 	},
 	{
 		unique: true,
-	}
+	},
 );
 
 export default mongoose.model("Product", productSchema);

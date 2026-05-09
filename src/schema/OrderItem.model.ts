@@ -12,6 +12,12 @@ const orderItemSchema = new Schema(
 			type: Schema.Types.ObjectId,
 			ref:"Order",
 		},
+		selectedSize: {
+			type: String,
+			enum:ProductSize,
+			required: true,
+		},
+
 
 		productId: {
 			type: Schema.Types.ObjectId,
