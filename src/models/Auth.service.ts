@@ -1,7 +1,7 @@
 import Errors, { HttpCode, Message } from "../libs/Errors";
 import { AUTH_TIMER, shapeIntoMongooseObjectId } from "../libs/config";
 import { Member } from "../libs/types/member";
-import jwt from "jsonwebtoken";
+import * as jwt from "jsonwebtoken";
 
 class AuthService {
 	private readonly secretToken;

@@ -194,9 +194,6 @@ class MemberService {
 				{ new: true },
 			)
 			.exec();
-
-
-
 	}
 }
 
