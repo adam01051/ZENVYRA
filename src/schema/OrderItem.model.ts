@@ -1,4 +1,5 @@
 import mongoose, { Schema } from "mongoose";
+import { ProductSize } from "../libs/enum/product.enum";
 
 const orderItemSchema = new Schema(
 	{
@@ -14,7 +15,7 @@ const orderItemSchema = new Schema(
 		},
 		selectedSize: {
 			type: String,
-			enum:ProductSize,
+			enum: ProductSize,
 			required: true,
 		},
 

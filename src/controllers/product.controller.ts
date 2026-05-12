@@ -15,7 +15,9 @@ productController.getAllProducts = async (req: Request, res: Response) => {
 		console.log("getAllProducts");
 
 		const data = await productService.getAllproducts();
-		console.log(data);
+	
+		console.log("this is get all products  info coming from db");
+		
 		res.render("products", { products: data });
 		
 	} catch (err) {
@@ -34,12 +36,15 @@ productController.createNewProduct = async (
 ) => {
 	try {
 		console.log("createNewProducts");
-		console.log(req.files);
+	
+		
 
 		if (!req.files?.length)
 			throw new Errors(HttpCode.INTERNAL_SERVER_ERROR, Message.CREATE_FAILED);
 
 		const data: ProductInput = req.body;
+
+		
 		data.productImages = req.files?.map((ele) => {
 			return ele.path;
 		});
@@ -92,7 +97,7 @@ productController.getProducts = async (req: Request, res: Response) => {
 		if (search) {
 			inquiry.search = String(search);
 		}
-			console.log("getProducts",inquiry);
+		console.log("getProducts",inquiry);
 		const result = await productService.getProducts(inquiry);
 
 		res.status(HttpCode.OK).json(result);

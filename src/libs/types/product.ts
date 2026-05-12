@@ -51,13 +51,23 @@ export interface ProductInput {
 	productName: string;
 	productPrice: number;
 
-	variants: ProductVariant[];
+	sizes: string;
+	stockS: number;
+	stockM: number;
+	stockL: number;
+	stockXL: number;
+	stockXXL: number;
+
 
 	productDesc?: string;
 
 	productViews?: number;
 	productImages?: string[];
 }
+
+
+
+
 
 /* Update Product */
 export interface ProductUpdateInput {

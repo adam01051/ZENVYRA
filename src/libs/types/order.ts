@@ -1,6 +1,7 @@
 import { ObjectId } from 'mongoose';
 import { OrderStatus } from '../enum/order.enum';
 import { Product } from "./product";
+import { ProductSize } from '../enum/product.enum';
 
 
 export interface OrderItem {
@@ -20,9 +21,10 @@ export interface OrderItem {
 export interface OrderItemInput {
 	itemQuantity: number;
 	itemPrice: number;
-	selectedSize: ProductSize;
+
 	productId: ObjectId;
-	orderId?: ObjectId;
+	orderId?: ObjectId;	
+	selectedSize: ProductSize;
 }
 
 

@@ -18,6 +18,5 @@ export enum ProductCollection {
 	JEANS = "JEANS",
 	JACKET = "JACKET",
 	SHOES = "SHOES",
-	ACCESSORY = "ACCESSORY",
-	OTHER = "OTHER",
+	
 }

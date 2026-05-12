@@ -4,7 +4,7 @@ import ProductModel from "../schema/Product.model";
 import Errors from "../libs/Errors";
 import { shapeIntoMongooseObjectId } from "../libs/config";
 import { T } from "../libs/types/common";
-import { ProductStatus } from "../libs/enum/product.enum";
+import { ProductSize, ProductStatus } from "../libs/enum/product.enum";
 import { ObjectId } from "mongoose";
 import ViewService from "./View.service";
 import { ViewInput } from "../libs/types/view";
@@ -92,13 +92,44 @@ class ProductService {
 	}
 
 	public async createNewProduct(input: ProductInput): Promise<Product> {
-		try {
-			return await this.productModel.create(input);
-		} catch (err) {
-			console.log("error in model create new prodcut ");
-			throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
-		}
+	try {
+		const sizeStockMap = [
+			{ size: ProductSize.S, stock: input.stockS },
+			{ size: ProductSize.M, stock: input.stockM },
+			{ size: ProductSize.L, stock: input.stockL },
+			{ size: ProductSize.XL, stock: input.stockXL },
+			{ size: ProductSize.XXL, stock: input.stockXXL },
+		];
+
+		const selectedSizes = Array.isArray(input.sizes)
+			? input.sizes
+			: [input.sizes];
+
+		const variants = sizeStockMap
+			.filter((item) => selectedSizes.includes(item.size))
+			.map((item) => ({
+				size: item.size,
+				stock: Number(item.stock) || 0,
+			}));
+
+		const productData = {
+			productStatus: input.productStatus,
+			productCollection: input.productCollection,
+			productName: input.productName,
+			productPrice: input.productPrice,
+			productDesc: input.productDesc,
+			productImages: input.productImages || [],
+			variants,
+		};
+		console.log("this is  prodcitdata from service");
+		console.log(productData);
+		
+		return await this.productModel.create(productData);
+	} catch (err) {
+		console.log("error in model create new product");
+		throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
 	}
+}
 
 	public async updateChosenProduct(
 		id: string,

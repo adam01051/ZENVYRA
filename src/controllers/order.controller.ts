@@ -18,6 +18,8 @@ try {
 		console.log("createOrder in orderController");
 
     const result= await orderService.createOrder(req.member, req.body)
+	console.log(result);
+	console.log("this is from order create controller");
 	
     res.status(HttpCode.CREATED).json(result );
 } catch (err) {

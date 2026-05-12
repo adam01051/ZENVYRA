@@ -30,6 +30,9 @@ class OrderService {
 		input: OrderItemInput[],
 	): Promise<Order> {
 		const memberId = shapeIntoMongooseObjectId(member._id);
+		console.log("this is from order create service");
+		console.log(input);
+
 
 		const amount = input.reduce((accumulator: number, item: OrderItemInput) => {
 			return accumulator + item.itemPrice * item.itemQuantity;

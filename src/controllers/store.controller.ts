@@ -52,7 +52,7 @@ storeController.processSignup = async (
 
 		const newMember: MemberInput = req.body;
 		newMember.memberImage = file?.path.replace(/\\/g, "/");
-		newMember.memberType = MemberType.Store;
+		newMember.memberType = MemberType.STORE;
 		const result = await memberService.processSignup(newMember);
 
 		req.session.member = result;
@@ -166,12 +166,12 @@ storeController.updateChosenUser =  async (req: Request, res: Response) => {
 
 
 
-storeController.verifyRestaurant = (
+storeController.verifyStore = (
 	req: AdminRequest,
 	res: Response,
 	next: NextFunction
 ) => {
-	if (req.session?.member?.memberType === MemberType.RESTAURANT) {
+	if (req.session?.member?.memberType === MemberType.STORE) {
 		req.member = req.session.member;
 		next();
 	} else {

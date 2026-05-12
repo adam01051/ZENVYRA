@@ -28,6 +28,9 @@ class MemberService {
 	}
 
 	public async signup(input: MemberInput): Promise<Member> {
+		if(!input.memberNick) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+		if(!input.memberPassword) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+		
 		const salt = await bcrypt.genSalt();
 		input.memberPassword = await bcrypt.hash(input.memberPassword, salt);
 
@@ -43,6 +46,9 @@ class MemberService {
 	}
 
 	public async login(input: LoginInput): Promise<Member> {
+		if(!input.memberNick) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+		if(!input.memberPassword) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+		
 		//todo: contsider member status later
 		const member = await this.memberModel
 			.findOne(
@@ -72,6 +78,9 @@ class MemberService {
 
 	//ssr
 	public async processSignup(input: MemberInput): Promise<Member> {
+		if(!input.memberNick) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+		if(!input.memberPassword) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+		
 		const exist = await this.memberModel
 			.findOne({ memberType: MemberType.STORE })
 			.exec();
@@ -94,6 +103,10 @@ class MemberService {
 	}
 
 	public async processLogin(input: LoginInput): Promise<Member> {
+		console.log("in process login");
+		if(!input.memberNick) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+		if(!input.memberPassword) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+		
 		const member = await this.memberModel
 			.findOne(
 				{ memberNick: input.memberNick },

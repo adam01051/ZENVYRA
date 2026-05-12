@@ -25,30 +25,30 @@ routerAdmin.get("/check-me", storeController.checkAuthSession);
 
 routerAdmin.get(
 	"/product/all",
-	storeController.verifyRestaurant,
+	storeController.verifyStore,
 	productController.getAllProducts,
 );
 routerAdmin.post(
 	"/product/create",
-	storeController.verifyRestaurant,
+	storeController.verifyStore,
 	makeUploader("products").array("productImages", 5),
 
 	productController.createNewProduct,
 );
 routerAdmin.post(
 	"/product/:id",
-	storeController.verifyRestaurant,
+	storeController.verifyStore,
 	productController.updateChosenProduct,
 );
 
 routerAdmin.get(
 	"/user/all",
-	storeController.verifyRestaurant,
+	storeController.verifyStore,
 	storeController.getUsers,
 );
 routerAdmin.post(
 	"/user/edit",
-	storeController.verifyRestaurant,
+	storeController.verifyStore,
 	storeController.updateChosenUser,
 );
 

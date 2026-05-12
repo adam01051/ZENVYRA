@@ -5,22 +5,7 @@ import {
 	ProductStatus,
 } from "../libs/enum/product.enum";
 
-/* Size Variant Schema */
-const variantSchema = new Schema(
-	{
-		size: {
-			type: String,
-			enum: ProductSize,
-			required: true,
-		},
-		stock: {
-			type: Number,
-			required: true,
-			default: 0,
-		},
-	},
-	{ _id: false },
-);
+
 
 /* Product Schema */
 const productSchema = new Schema(
@@ -50,10 +35,13 @@ const productSchema = new Schema(
 		},
 
 		/* NEW INVENTORY SYSTEM */
-		variants: {
-			type: [variantSchema],
-			default: [],
-		},
+		variants: [
+ {
+	_id:false,
+   size: { type: String },
+   stock: { type: Number, default: 0 }
+ }
+],
 
 		productDesc: {
 			type: String,

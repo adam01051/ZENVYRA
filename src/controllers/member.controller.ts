@@ -1,5 +1,5 @@
 import { T } from "../libs/types/common";
-// @ts-ignore
+
 import { Response, Request, NextFunction } from "express";
 import MemberService from "../models/member.service";
 import {
@@ -143,9 +143,10 @@ memberController.updateMember = async (req: ExtendedRequest, res: Response) => {
 };
 memberController.getTopUsers = async (req: Request, res: Response) => {
 	try {
-			console.log("getTopUsers  section");
+		console.log("getTopUsers  section");
+		
 		const result = await memberService.getTopUsers();
-
+		
 
 		res.status(HttpCode.OK).json(result);
 
