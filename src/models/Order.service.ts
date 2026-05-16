@@ -13,6 +13,7 @@ import { HttpCode } from "../libs/Errors";
 import { ObjectId } from "mongoose";
 import { OrderStatus } from "../libs/enum/order.enum";
 import MemberService from "./member.service";
+import ProductModel from "../schema/Product.model";
 
 class OrderService {
 	private readonly orderModel;
@@ -23,6 +24,7 @@ class OrderService {
 		this.orderModel = OrderModel;
 		this.orderItemModel = OrderItemModel;
 		this.memberService = new MemberService();
+	
 	}
 
 	public async createOrder(
@@ -60,20 +62,61 @@ class OrderService {
 		}
 	}
 
-	private async recordOrderItem(
-		orderId: ObjectId,
-		input: OrderItemInput[],
-	): Promise<void> {
-		const promisedList =  input.map(async (item: OrderItemInput) => {
-			item.orderId = orderId;
-			item.productId = shapeIntoMongooseObjectId(item.productId);
-			await this.orderItemModel.create(item);
-			return "INSERTED";
-		});
-		console.log("promisedList", promisedList);
-		const orderItemsState = await Promise.all(promisedList);
-		console.log("orderState", orderItemsState);
-	}
+private async recordOrderItem(
+	orderId: ObjectId,
+	input: OrderItemInput[],
+): Promise<void> {
+
+	const promisedList = input.map(async (item: OrderItemInput) => {
+
+		item.orderId = orderId;
+		item.productId = shapeIntoMongooseObjectId(item.productId);
+
+		// FIND PRODUCT
+		const product = await ProductModel.findById(item.productId);
+
+		if (!product) {
+			throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+		}
+
+		// FIND SELECTED VARIANT
+		const variant = product.variants.find(
+			(ele: any) => ele.size === item.selectedSize
+		);
+
+		if (!variant) {
+			throw new Errors(HttpCode.BAD_REQUEST, Message.NO_DATA_FOUND);
+		}
+
+		// CHECK STOCK
+		if (variant.stock < item.itemQuantity) {
+			throw new Errors(
+				HttpCode.BAD_REQUEST, Message.NO_DATA_FOUND);
+		}
+
+		// REDUCE STOCK
+		await ProductModel.updateOne(
+			{
+				_id: item.productId,
+				"variants.size": item.selectedSize,
+			},
+			{
+				$inc: {
+					"variants.$.stock": -item.itemQuantity,
+				},
+			},
+		);
+
+		// SAVE ORDER ITEM
+		await this.orderItemModel.create(item);
+
+		return "INSERTED";
+	});
+
+	const orderItemsState = await Promise.all(promisedList);
+
+	console.log("orderState", orderItemsState);
+}
 
 	public async getMyOrders(
 		member: Member,
