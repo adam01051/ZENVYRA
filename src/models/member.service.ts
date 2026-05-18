@@ -161,6 +161,7 @@ class MemberService {
 			.exec();
 		if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
 
+
 		return result;
 	}
 
@@ -180,7 +181,8 @@ class MemberService {
 		const result = await this.memberModel
 			.find({
 				memberStatus: MemberStatus.ACTIVE,
-				memberPoints: { $gte: 1 },
+				memberType:MemberType.USER,
+				memberPoints: { $gte: 0 },
 			})
 			.sort({ memberPoints: -1 })
 			.limit(4)
