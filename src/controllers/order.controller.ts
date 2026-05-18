@@ -38,6 +38,27 @@ try {
 
 
 
+
+
+orderController.updateOrder = async (req: ExtendedRequest, res: Response) => {
+	try {
+		console.log("updateOrder in orderController");
+
+        const input: OrderUpdateInput = req.body;
+        const result = await orderService.updateOrder(req.member, input);
+		
+		res.status(HttpCode.OK).json(result);
+	} catch (err) {
+		console.log("Error updateOrder, jarayoni", err);
+		if (err instanceof Errors) {
+			res.status(err.code).json(err);
+		} else {
+			res.status(Errors.standard.code).json(Errors.standard);
+		}
+	}
+};
+
+
 orderController.getMyOrders = async (req: ExtendedRequest, res: Response) => {
 	try {
 		console.log("getMyOrders in orderController");
@@ -64,16 +85,39 @@ orderController.getMyOrders = async (req: ExtendedRequest, res: Response) => {
 	}
 };
 
-orderController.updateOrder = async (req: ExtendedRequest, res: Response) => {
-	try {
-		console.log("updateOrder in orderController");
+// productController.getAllProducts = async (req: Request, res: Response) => {
+// 	try {
+// 		console.log("getAllProducts");
 
-        const input: OrderUpdateInput = req.body;
-        const result = await orderService.updateOrder(req.member, input);
+// 		const data = await productService.getAllproducts();
+	
+// 		console.log("this is get all products  info coming from db");
 		
-		res.status(HttpCode.OK).json(result);
+// 		res.render("products", { products: data });
+		
+// 	} catch (err) {
+// 		console.log("Error getAllProducts, jarayoni", err);
+// 		if (err instanceof Errors) {
+// 			res.status(err.code).json(err);
+// 		} else {
+// 			res.status(Errors.standard.code).json(Errors.standard);
+// 		}
+// 	}
+// };
+
+
+orderController.getAllOrders = async (req: ExtendedRequest, res: Response) => {
+	try {
+		console.log("getAllrders in orderController");
+
+
+      const result = await orderService.getAllOrders();
+res.render("orders", {
+	
+	orders: result,
+});
 	} catch (err) {
-		console.log("Error updateOrder, jarayoni", err);
+		console.log("Error getMyOrders, jarayoni", err);
 		if (err instanceof Errors) {
 			res.status(err.code).json(err);
 		} else {

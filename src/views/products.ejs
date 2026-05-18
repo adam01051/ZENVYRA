@@ -40,12 +40,12 @@
                     </td>
 
                     <td>
-                      <%= value.productPrice %>
+                     <span style="font-weight: 600;">$<%= value.productPrice %></span>
                     </td>
                     <td>
                       <%value.variants.map(function (value1, key1) {%>
                     <div>
-                      <%= value1.size%> : <%=  value1.stock%>
+                      <%= value1.size%>-size : <span style="font-weight: 600;"> <%=  value1.stock%></span>
                     </div>
 
 

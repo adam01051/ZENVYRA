@@ -86,12 +86,14 @@
 
 
 .navigation-menu {
+  position: relative;
   display: flex;
   justify-content: space-between; /* pushes logo left, links right */
   align-items: center;
   padding: 10px 40px;
 
   background: #ebe9e4;
+  z-index: 100;
 
 }
 

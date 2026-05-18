@@ -157,6 +157,122 @@ private async recordOrderItem(
 		return result;
 	}
 
+	// public async getAllproducts(): Promise<Product[]> {
+	// 	const result = await this.productModel.find().exec();
+
+	// 	if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+
+	// 	return result;
+	// }
+
+
+public async getAllOrders(): Promise<any> {
+
+	try {
+			
+	const result = await this.orderModel
+			.aggregate([
+				{
+	$match: {
+		orderStatus: "FINISH",
+	},
+},
+					{
+					$lookup: {
+						from: "orderItems",
+						localField: "_id",
+						foreignField: "orderId",
+						as: "orderItems",
+					},
+				},
+				{
+				$unwind: "$orderItems",
+			},
+				{
+					$lookup: {
+						from: "products",
+						localField: "orderItems.productId",
+						foreignField: "_id",
+						as: "productData",
+					},
+				},
+				{
+				$unwind: "$productData",
+			},
+				{
+					$lookup: {
+						from: "members",
+						localField: "memberId",
+						foreignField: "_id",
+						as: "memberData",
+					},
+				},
+				{
+				$unwind: "$memberData",
+			},{
+			$group: {
+				_id: "$_id",
+
+				customer: {
+					$first: "$memberData.memberNick",
+				},
+
+				orderStatus: {
+					$first: "$orderStatus",
+				},
+
+				orderTotal: {
+					$first: "$orderTotal",
+				},
+
+				createdAt: {
+					$first: "$createdAt",
+				},
+
+				items: {
+					$push: {
+						productName: "$productData.productName",
+						quantity: "$orderItems.itemQuantity",
+						size: "$orderItems.selectedSize",
+						price: "$orderItems.itemPrice",
+					},
+				},
+			},
+		},
+
+		// SORT
+		{
+			$sort: {
+				createdAt: -1,
+			},
+		},
+			
+			
+			])
+			.exec();
+
+
+
+
+console.log(result)
+console.log(result[0].items)
+
+		// if (!result.length) {
+		// 	throw new Errors(
+		// 		HttpCode.NOT_FOUND,
+		// 		Message.NO_DATA_FOUND
+		// 	);
+		// }
+
+		return result;
+	} catch (err) {
+		console.log("getAllOrders error:", err);
+		throw err;
+	}
+}
+
+
+
 	public async updateOrder(
 		member: Member,
 		input: OrderUpdateInput,

@@ -2,6 +2,7 @@ import express from "express";
 import storeController from "./controllers/store.controller";
 import productController from "./controllers/product.controller";
 import makeUploader from "./libs/utils/uploader";
+import orderController from "./controllers/order.controller";
 
 const routerAdmin = express.Router();
 
@@ -50,6 +51,18 @@ routerAdmin.post(
 	"/user/edit",
 	storeController.verifyStore,
 	storeController.updateChosenUser,
+);
+
+routerAdmin.get(
+	"/product/all",
+	storeController.verifyStore,
+	productController.getAllProducts,
+);
+
+routerAdmin.get(
+	"/orders/all",
+	storeController.verifyStore,
+	orderController.getAllOrders,
 );
 
 export default routerAdmin;
