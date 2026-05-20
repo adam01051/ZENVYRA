@@ -15,8 +15,8 @@
                     <tr>
                       <th>No</th>
                       <th>Customer</th>
-                      <th>Status</th>
                       <th>Total</th>
+                        <th>Status</th>
                       <th>Details</th>
                     </tr>
                   </thead>
@@ -36,13 +36,14 @@
                             <%= order.customer %>
                           </td>
 
+                            <td>
+                            <%= order.orderTotal %>$
+                          </td>
                           <td>
                             <%= order.orderStatus %>
                           </td>
 
-                          <td>
-                            <%= order.orderTotal %>$
-                          </td>
+                      
 
                           <td>
                             <button class="btn btn-sm btn-dark" data-bs-toggle="collapse"

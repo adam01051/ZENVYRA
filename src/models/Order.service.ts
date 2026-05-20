@@ -233,6 +233,7 @@ public async getAllOrders(): Promise<any> {
 					$push: {
 						productName: "$productData.productName",
 						quantity: "$orderItems.itemQuantity",
+						
 						size: "$orderItems.selectedSize",
 						price: "$orderItems.itemPrice",
 					},
