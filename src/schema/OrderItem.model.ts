@@ -1,0 +1,31 @@
+import mongoose, { Schema } from "mongoose";
+import { ProductSize } from "../libs/enum/product.enum";
+
+const orderItemSchema = new Schema(
+	{
+		itemQuantity: { type: Number, required: true },
+
+		itemPrice: {
+			type: Number,
+			required: true,
+		},
+		orderId: {
+			type: Schema.Types.ObjectId,
+			ref:"Order",
+		},
+		selectedSize: {
+			type: String,
+			enum: ProductSize,
+			required: true,
+		},
+
+
+		productId: {
+			type: Schema.Types.ObjectId,
+			ref: "Product",
+		},
+	},
+	{ timestamps: true,collection:"orderItems" },
+);
+ 
+export default mongoose.model("OrderItem", orderItemSchema);

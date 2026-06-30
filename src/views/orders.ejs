@@ -1,0 +1,147 @@
+<%- include('includes/header') %>
+
+  <link rel="stylesheet" type="text/css" href="/css/users.css" />
+
+  <body>
+    <div class="users-container">
+  <%- include('includes/navbar') %>
+
+          <div class="users-frame">
+            <div class="board">
+              <div class="user-table">
+                <span class="header-name" style="margin-bottom: 30px">All Orders List</span>
+                <table class="table table-hover table-sm">
+                  <thead class="thead-light">
+                    <tr>
+                      <th>No</th>
+                      <th>Customer</th>
+                      <th>Total</th>
+                        <th>Status</th>
+                      <th>Details</th>
+                    </tr>
+                  </thead>
+                  <!--  LOOP PRODUCTS: START  -->
+                  <% //users.map(function (value, index) {%>
+
+
+                    <tbody style="background: white; padding: 0;">
+                      <% orders.map(function(order, index) { %>
+
+                        <tr>
+                          <td>
+                            <%= index + 1 %>
+                          </td>
+
+                          <td>
+                            <%= order.customer %>
+                          </td>
+
+                            <td>
+                            <%= order.orderTotal %>$
+                          </td>
+                          <td>
+                            <%= order.orderStatus %>
+                          </td>
+
+                      
+
+                          <td>
+                            <button class="btn btn-sm btn-dark" data-bs-toggle="collapse"
+                              data-bs-target="#order-<%= order._id %>">
+                              Details
+                            </button>
+                          </td>
+                        </tr>
+
+                        <tr class="collapse" id="order-<%= order._id %>">
+                          <td colspan="5" style="padding:0; background:#f3f4f6;">
+
+                            <table class="table mb-0" style="background:#f3f4f6;">
+
+                              <thead>
+                                <tr style="background:#ebf0f5;">
+                                  <th>Product</th>
+                                  <th>Quantity</th>
+                                  <th>Size</th>
+                                  <th>Price</th>
+                                </tr>
+                              </thead>
+
+                              <tbody>
+
+                                <% order.items.map(function(item) { %>
+
+                                  <tr style="background:#f9fafb;">
+
+                                    <td>
+                                      <%= item.productName %>
+                                    </td>
+
+                                    <td>
+                                      <%= item.quantity %>
+                                    </td>
+
+                                    <td>
+                                      <%= item.size %>
+                                    </td>
+
+                                    <td>$<%= item.price %>
+                                    </td>
+
+                                  </tr>
+
+                                  <% }) %>
+
+                              </tbody>
+
+                            </table>
+
+                          </td>
+                        </tr>
+
+                        <% }) %>
+                    </tbody>
+
+
+                </table>
+              </div>
+            </div>
+          </div>
+   
+    </div>
+
+
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <%- include('includes/footer') %>
+
+
+
+<!-- 
+       <% if(!member) { %>
+        <div class="navigation-menu">
+          <a href="/admin" class="nav-logo">ZENVYRA</a>
+          <ul class="nav nav-links">
+            <li class="nav-item"><a class="nav-link active" href="/admin/">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/admin/signup">SignUp</a></li>
+            <li class="nav-item"><a class="nav-link" href="/admin/login">Login</a></li>
+          </ul>
+        </div>
+
+        <div class="users-frame">
+          <div class="board" style="font-size: 24px; color: #494747; margin-top: 40px;">Please login first!</div>
+        </div>
+
+        <% } else { %>
+          <div class="navigation-menu">
+            <a href="/admin" class="nav-logo">ZENVYRA</a>
+            <ul class="nav nav-links">
+              <li class="nav-item"><a class="nav-link" href="/admin/">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="/admin/product/all">Menu</a></li>
+              <li class="nav-item"><a class="nav-link" href="/admin/user/all">Users</a></li>
+              <li class="nav-item" onclick="return confirm('Do you really want to logout?')">
+                <a class="nav-link" href="/admin/logout">Logout</a>
+              </li>
+            </ul>
+          </div>      
+           <% } %> -->

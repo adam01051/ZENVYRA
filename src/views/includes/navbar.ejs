@@ -1,0 +1,42 @@
+  
+  <div class="home-container">
+
+    <div class="navigation-menu">
+        <div class="nav-left">
+    <a href="/admin" class="logo">ZENVYRA</a>
+  </div>
+      <ul class="nav justify-content-center nav-links">
+        <li class="nav-item" style="cursor: pointer">
+          <a class="nav-link active" href="/admin">Home</a>
+        </li>
+        <% if(!member) { %>
+        <li class="nav-item" style="cursor: pointer">
+          <a class="nav-link" href="/admin/signup">Signup</a>
+        </li>
+        <li class="nav-item" style="cursor: pointer">
+          <a class="nav-link" href="/admin/login">Login</a>
+        </li>
+        <% } else { %>
+        <li class="nav-item" style="cursor: pointer"> 
+          <a class="nav-link" href="/admin/product/all">Products</a>
+        </li>
+        <li class="nav-item" style="cursor: pointer">
+          <a class="nav-link" href="/admin/user/all">Users</a>
+        </li>
+          <li class="nav-item" style="cursor: pointer">
+          <a class="nav-link" href="/admin/orders/all">Orders</a>
+        </li>
+        
+
+        <li
+          class="nav-item"
+          style="cursor: pointer"
+          onclick="return confirm('Do you want to logout?')"
+        >
+          <a class="nav-link" href="/admin/logout">Logout</a>
+        </li>
+        <% } %>
+      </ul>
+    </div>
+
+      </div>
